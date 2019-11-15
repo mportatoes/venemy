@@ -1,5 +1,5 @@
 # Venemy
-An intelligence tool for Venmo. Presented at the Layer8 2019 conference. Use wisely - not responsible for any misuse.
+An intelligence tool for Venmo. Presented at Bsides Charleston 2019, Avengercon 2018, and Layer8 2019. Use wisely/be an infosec hero - not responsible for any misuse.
 
 # Venemy - Authenticated
 The authenticated module allows for much more data to be collected. This module requires an API token (provided to all accounts - no additional signups). Look at the Request/Response headers and you will see an api_access_token in the cookie. Put this value into the script for the variable of the same name and run. Note that the token expires every 30 minutes. You can also script account creation - a valid API token is sent in the Reponse header before the account is verified. You can use the token for 30 minutes before having to create another fake account.
