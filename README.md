@@ -6,7 +6,7 @@ It's been awhile since I've updated this and things have changed over at Venmo. 
   - You can gain your API credentials directly from the script with the -a (or --auth) flag
   - Updated collected fields based on the API endpoints
   - Authenticated and Unauthenticated code merged into one
-  - Full credit for the authentication code goes to [mmohades](https://github.com/mmohades/Venmo)
+  - Full credit for the automation of obtaining an API token goes to [mmohades](https://github.com/mmohades/Venmo)
 
 # Venemy - Authenticated
 The authenticated module allows for much more data to be collected. This module requires an API token (available to all accounts, no additional signups). In order to set this up, perform the following:
