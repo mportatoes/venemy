@@ -1,6 +1,6 @@
 ## Venmo API v1
 
-
+Very well documented [here](https://github.com/mmohades/Venmo)
 
 
 ##Venmo API v5
