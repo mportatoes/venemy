@@ -6,32 +6,36 @@ Each database instance will have its own folder for files. You'll need to locate
 
 ## Loading CSV Data Manually
 ### Loading Seed Data
-    LOAD CSV WITH HEADERS FROM "file:///XXXXXX.csv" as row
-    MERGE (person:Person {id:row.user})
-    ON CREATE SET person.ext_id=row.external_id,person.username=row.username,person.name=row.name,person.date_created=row.date_created,person.biz=row.is_business,person.num_friends=person.num_friends,person.pic_url=row.picture_url
+    LOAD CSV WITH HEADERS FROM "file:///mmason.csv" as row
+    MERGE (person:Person {id:row.venmo_id})
+    ON CREATE SET person.username=row.username,person.display_name=row.display_name,person.friends_count=row.friends_count,person.date_joined=row.date_joined,person.phone=row.phone,person.email=person.email
 
 ### Loading Friend Data
-    LOAD CSV WITH HEADERS FROM "file:///XXXXXX_friends.csv" as row
-    MATCH (p:Person {id:"XXXXXX"}) //This can be a variable
-    MERGE (person:Person {id:row.user_id})
-    ON CREATE SET person.ext_id=row.external_id,person.username=row.username,person.name=row.name,person.date_created=row.date_created,person.biz=row.is_business,person.num_friends=person.num_friends,person.pic_url=row.picture_url
-    CREATE (p)-[r:friends_with]->(person)
+    LOAD CSV WITH HEADERS FROM "file:///mmason_friends.csv" as row
+    MATCH (p:Person {username:row.fvalue})
+    MERGE (n:Person {username:row.username})
+    ON CREATE SET n.id=row.venmo_id,n.display_name=row.display_name,n.date_joined=row.date_joined,n.phone=row.phone,n.email=row.email
+    CREATE (n)-[r:friends_with]->(p)
 
 ### Loading Transaction Data
-    LOAD CSV WITH HEADERS FROM "file:///35247548_trans.csv" as row
-    MERGE (payor:Person {id:row.actor_id})
-    ON CREATE SET payor.name=row.actor_username
-    MERGE (payee:Person {id:row.target_id})
-    ON CREATE SET payee.name = row.target_username
-    CREATE (payor)-[d:paid {trans:row.msg, id:row.story_id,time:row.updated_time}]->(payee)
+    LOAD CSV WITH HEADERS FROM "file:///mmason_trans.csv" as row
+    MERGE (payor:Person {username:row.payor})
+    ON CREATE SET payor.username=row.payor
+    MERGE (payee:Person {username:row.payee})
+    ON CREATE SET payee.username = row.payee
+    CREATE (payor)-[d:paid {trans:row.item, id:row.id,time:row.date_updated}]->(payee)
     
 ## Running Test Queries
 ### Show Everything
     MATCH (n) RETURN n
-### Show Friends in Common
+### Show Friends in Common (if multiple people are loaded)
     Match (p:Person)-[:friends_with]->(q)<-[:friends_with]-(f:Person) RETURN p,q,f
+### Show highest interaction transactions
+    MATCH (p:Person)-[d:paid]->(q:Person) RETURN q.username,count(*) as c ORDER BY c DESC
+### Show most common purchases
+    MATCH (p:Person)-[d:paid]->(q:Person) RETURN q.username,d.trans,count(*) as c ORDER BY c DESC
 ### Show All Transactions
-    MATCH (p:Person)-[d:paid]->(q:Person) 
+    MATCH (p:Person)-[d:paid]->(q:Person) RETURN *
 ### Show All Transactions Containing a Football
     MATCH (p:Person)-[d:paid]->(q:Person) WHERE d.trans =~'.*🏈.*' RETURN p,q
 ### Show Friends in Common (if using the crawl feature)
