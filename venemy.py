@@ -35,7 +35,7 @@ class Client(object):
         self.__access_token = validate_access_token(access_token=access_token)
         self.__api_client = ApiClient(access_token=access_token)
         self.user = UserApi(self.__api_client)
-        self.__profile = self.user.get_my_profile()
+        #self.__profile = self.user.get_my_profile()
         #self.payment = PaymentApi(profile=self.__profile,api_client=self.__api_client)
 
     def my_profile(self, force_update=False):
