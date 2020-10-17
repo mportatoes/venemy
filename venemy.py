@@ -191,7 +191,9 @@ def brute_force(username):
 	barray.append(username.replace(' ','-')+'-1') #User-Name-1
 	barray.append(username.replace(' ','-')+'-2') #User-Name-2
 	barray.append(username.replace(' ','-')+'-3') #User-Name-3
-	barray.append(username.replace(' ','')+1) #UserName
+	barray.append(username.replace(' ','')+'1') #UserName
+	barray.append(username.replace(' ','')+'2') #UserName
+	barray.append(username.replace(' ','')+'3') #UserName
 	for uname in barray:
 		no_auth(uname)
 		time.sleep(1.5)
