@@ -1,5 +1,5 @@
 # Venemy
-An intelligence tool for Venmo. Presented at Bsides Charleston 2019, Avengercon 2019, and Layer8 2019. Use wisely/be an infosec hero - not responsible for any misuse.
+An intelligence tool for Venmo. Presented at conINT2020, Bsides Charleston 2019, Avengercon 2019, and Layer8 2019. Use wisely/be an infosec hero - not responsible for any misuse.
 
 # Update 10/12/2020
 It's been awhile since I've updated this and things have changed over at Venmo. This is *great*, actually from privacy and security perspectives. They've taken steps (albeit minor) to improve the security of their API and provided more transparency on user settings for making things private. Most of the API endpoints now require authentication. However, anyone with an account can get an API token and gain access to their API endpoints where they can gather all the things. I've updated this repo to account for the new oAuth process and accessing the updated API endpoints. Changes:
