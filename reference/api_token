@@ -1,9 +1,0 @@
-Of course you could script this but here's what you are looking for if conducting OSINT and running this tool at the same time.
-
-1. Login to Venmo
-2. In Firefox, choose Web Developer > Network
-3. Reload the page
-4. Choose the first entry - should be your username in the File column
-5. In the right window with the HTTP info, choose Cookies
-6. In the Response cookies, you should see 'api_access_token'. Copy the 'value' field
-7. Paste the value into the venemy script
