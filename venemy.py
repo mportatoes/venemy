@@ -97,15 +97,17 @@ def GetDataFromVenmo(url):
 
 #Grab Basic Info for User
 def GetBasicInfo(passed_user):
-	url = 'https://api.venmo.com/v1/users/{0}'.format(passed_user)
-	response = GetDataFromVenmo(url)
-	if response.status_code==200:
-		data = response.json()
-		return data['data']
-		
-		return user_id
-	else:
-		print("Mistakes Were Made...")
+	try:
+		url = 'https://api.venmo.com/v1/users/{0}'.format(passed_user)
+		response = GetDataFromVenmo(url)
+		print(response.json())
+		if response.status_code==200:
+			data = response.json()
+			return data['data']
+		elif response.status_code==400:
+			print("That user profile doesn't exist - make sure you have it right. If you're trying to find the profile of someone, use the brute force option first")
+	except:
+		 print(str(e))
 
 #Grab the list of friends
 def GetFriendList(passed_user):	
