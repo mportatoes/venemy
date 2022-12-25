@@ -86,7 +86,7 @@ def authenticate():
 def GetDataFromVenmo(url):
 	try:
 		api_key = config['venmo.com']['api_token']
-		user_agent = "Venmo/7.38.0 (iPhone; iOS 13.0; Scale/2.0)"
+		user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
 		headers = {'User-Agent':user_agent, 'Authorization': 'Bearer '+ api_key}
 		response = requests.get(url, headers=headers,verify=False)
 		return response
